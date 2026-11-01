@@ -88,6 +88,27 @@
   const choice=document.querySelector('#group-choice');for(const g of groups){const option=element('option',g);option.value=g;option.selected=g===group;choice.append(option);}choice.addEventListener('change',()=>{location.href='phylogeny.html?group='+encodeURIComponent(choice.value);});
   const images={'Birds':['atlas-bird-plate.jpg','Historical illustration of African starlings'],'Mammals':['kidepo-lion-portrait.jpg','Male lion in Kidepo, Uganda'],'Plants':['collection-botanical-art.jpg','Historical botanical illustration'],'Fish':['collection-fish-drawing.jpg','Scientific fish illustration'],'Reptiles':['collection-chameleon.jpg','Chameleon photograph'],'Amphibians':['collection-frog-reference.jpg','Tree frog reference photograph from DR Congo'],'Insects':['ruspolia-differens.jpg','Ruspolia differens in Uganda'],'Fungi':['fungi.jpg','Fungi at Kibale']};const picture=images[group];const hero=document.querySelector('#group-illustration');if(picture){hero.src='assets/images/'+picture[0];hero.alt=picture[1];document.querySelector('#group-image-caption').textContent=picture[1];}else hero.closest('figure').hidden=true;
   document.title=group+' — Branches of life | Living Uganda';document.querySelector('#group-eyebrow').textContent='UGANDA / '+group.toUpperCase();document.querySelector('#group-intro').textContent='Follow the connections. Explore '+group.toLowerCase()+' in our Uganda catalogue.';document.querySelector('#bird-search').placeholder='Find a common or scientific name';
+  const PLATE_GROUPS=['Fish','Mammals','Amphibians','Birds'];
+  function startPlate(){
+    const embed=document.querySelector('#plate-embed');
+    document.body.classList.add('plate-mode');
+    embed.hidden=false;
+    fetch('data/plates/'+slug+'.json').then(r=>{if(!r.ok)throw Error('Plate unavailable');return r.json();}).then(data=>{
+      coverage.textContent=data.summary.catalogue+' species currently in this catalogue';
+      const summary=data.summary;
+      document.querySelector('#plate-summary').textContent=
+        summary.total
+          ? summary.recorded+' of '+summary.total+' '+data.noun.many+' recorded in Uganda'
+          : summary.recorded+' '+data.noun.many+' recorded in Uganda';
+      const browse=document.querySelector('#plate-browse');
+      browse.href='species.html?group='+encodeURIComponent(group)+'#browse';
+      browse.textContent='Browse '+group.toLowerCase()+' ↗';
+      const source=document.querySelector('#plate-source');
+      if(data.source){source.href=data.source.url;source.title=data.source.label;}
+      window.mountPhylogenyPlate(document.querySelector('#plate'),data);
+    }).catch(()=>{coverage.textContent='The plate could not be loaded.';});
+  }
+  if(PLATE_GROUPS.includes(group)){startPlate();return;}
   Promise.all(['data/species.json','data/phylogenies/'+slug+'.json'].map(url=>fetch(url).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json();}))).then(([data,source])=>{
     phylogeny=source;records=data.records.filter(r=>r.group===group);const placedIds=new Set(source.tree.ids);source.unplacedIds=records.filter(r=>!placedIds.has(r.id)).map(r=>r.id);document.querySelector('#tree-source').href=source.sourceURL;root=build(records);viewRoot=root;selected=root;coverage.textContent=records.length+' species currently in this catalogue';document.querySelector('#bird-pending').hidden=!phylogeny.unplacedIds.length;if(!records.length){detail.textContent='No entries in this group yet. New records can be added through the local inventory app.';document.querySelector('#bird-mode').textContent='READY FOR NEW ENTRIES';}const names=document.querySelector('#bird-names');for(const record of records){const option=element('option');option.value=record.commonName||record.scientificName;names.append(option);}setView(nodes.get(new URL(location.href).searchParams.get('branch'))||root,'replace');if(!records.length){detail.replaceChildren(element('h2',group),element('p','No entries in this group yet. The explorer will populate when records are added.'));}
   }).catch(error=>{console.error(error);coverage.textContent='The tree could not load. Use the list browser or reload this page.';svg.setAttribute('aria-label','Bird catalogue unavailable');});
