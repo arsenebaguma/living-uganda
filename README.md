@@ -138,3 +138,6 @@ Open Font License (`assets/fonts/`).
 ## Corrections
 
 Open an issue: https://github.com/arsenebaguma/living-uganda/issues
+
+Or write privately to arsenebaguma10@gmail.com (published on the About and privacy pages as
+HTML entities, to keep it off simple spam lists).
