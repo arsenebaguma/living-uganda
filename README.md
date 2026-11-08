@@ -25,6 +25,24 @@ Two consequences are worth knowing:
 - **`?v=` query strings are not needed.** Pages serves the current file; the
   cache lives for ten minutes.
 
+## What protects `main`
+
+The branch is protected by a ruleset called **Protect main** (Settings → Rules →
+Rulesets), active on `refs/heads/main` with no bypass list:
+
+- the branch cannot be deleted;
+- force-pushes are refused, so published history cannot be rewritten;
+- a branch named `main` cannot be created;
+- the `Release check` workflow must pass before a pull request can be merged.
+
+Direct pushes still work — that is how publishing happens. The check is enforced
+on pull requests; for a direct push it runs afterwards and reports. The gate that
+actually stops a bad publish is `publish.py`, which refuses to write a tree that
+fails the check.
+
+If a legitimate force-push is ever needed, edit or delete the ruleset first. That
+is deliberate: rewriting published history should never be a reflex.
+
 ## Before you publish
 
 Run the release check. It is the same check CI runs, and it must pass:
