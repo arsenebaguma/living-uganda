@@ -436,7 +436,12 @@ def main() -> int:
         if not (site / rel).exists():
             rep.error(rel, "required file is missing")
 
-    pages = sorted(site.glob("*.html"))
+    pages = sorted(
+        p for p in site.glob("*.html")
+        # Google Search Console ownership files are uploaded verbatim and must not
+        # be checked (or altered) as if they were site pages.
+        if not re.fullmatch(r"google[0-9a-f]+\.html", p.name, re.I)
+    )
     print(f"  pages: {len(pages)}")
     texts = check_pages(site, pages, rep)
     print("\n  links and anchors:")
