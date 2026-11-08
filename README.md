@@ -33,12 +33,14 @@ Rulesets), active on `refs/heads/main` with no bypass list:
 - the branch cannot be deleted;
 - force-pushes are refused, so published history cannot be rewritten;
 - a branch named `main` cannot be created;
-- the `Release check` workflow must pass before a pull request can be merged.
+- the `Release check` workflow must pass before a commit reaches `main`.
 
-Direct pushes still work — that is how publishing happens. The check is enforced
-on pull requests; for a direct push it runs afterwards and reports. The gate that
-actually stops a bad publish is `publish.py`, which refuses to write a tree that
-fails the check.
+GitHub applies that last rule to direct pushes too — and a brand-new commit cannot
+have a check result yet, so with no exception **nothing could be pushed at all**.
+The repository admin is therefore on the ruleset's **bypass list**: your own
+publishes go through (GitHub logs `Bypassed rule violations`), while anyone else is
+held to the check. `publish.py` is still the gate on your machine, and it refuses a
+tree that fails the check before anything is committed.
 
 If a legitimate force-push is ever needed, edit or delete the ruleset first. That
 is deliberate: rewriting published history should never be a reflex.
