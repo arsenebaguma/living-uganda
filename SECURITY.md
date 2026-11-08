@@ -9,11 +9,11 @@ That removes most of the usual attack surface, but two things still matter:
 ## If you find a problem
 
 - **Content, credit or privacy problem** — open an issue:
-  https://github.com/arsenebaguma0-ux/living-uganda/issues
+  https://github.com/arsenebaguma/living-uganda/issues
 - **Something that could harm visitors** (a script injection, a compromised link,
   a file that should not be public) — please do not open a public issue first.
   Contact the maintainer through the GitHub profile
-  https://github.com/arsenebaguma0-ux and allow a few days for a reply.
+  https://github.com/arsenebaguma and allow a few days for a reply.
 
 ## What the site does to protect visitors
 

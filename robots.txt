@@ -1,6 +1,6 @@
 # Living Uganda
-# https://arsenebaguma0-ux.github.io/living-uganda/
+# https://arsenebaguma.github.io/living-uganda/
 User-agent: *
 Allow: /
 
-Sitemap: https://arsenebaguma0-ux.github.io/living-uganda/sitemap.xml
+Sitemap: https://arsenebaguma.github.io/living-uganda/sitemap.xml

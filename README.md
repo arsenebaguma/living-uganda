@@ -3,7 +3,7 @@
 A public catalogue and encyclopedia of Uganda's biodiversity, published with
 GitHub Pages.
 
-**Live site:** https://arsenebaguma0-ux.github.io/living-uganda/
+**Live site:** https://arsenebaguma.github.io/living-uganda/
 
 The catalogue currently holds 1,901 species records across nine groups — birds,
 plants, mammals, insects, fish, reptiles, amphibians, other invertebrates and
@@ -117,4 +117,4 @@ Open Font License (`assets/fonts/`).
 
 ## Corrections
 
-Open an issue: https://github.com/arsenebaguma0-ux/living-uganda/issues
+Open an issue: https://github.com/arsenebaguma/living-uganda/issues

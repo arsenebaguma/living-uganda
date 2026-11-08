@@ -28,7 +28,7 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from pathlib import Path
 
-BASE = "https://arsenebaguma0-ux.github.io/living-uganda/"
+BASE = "https://arsenebaguma.github.io/living-uganda/"
 
 # Pages published on purpose without an index instruction (drafts, redirects, error page).
 EXPECTED_NOINDEX = {
