@@ -122,6 +122,7 @@ site's Content-Security-Policy.
 | `data/` | Catalogue and tree data |
 | `assets/` | Styles, scripts, images, fonts |
 | `sitemap.xml`, `robots.txt` | Search-engine files |
+| `google60d5a8b72e6a0b14.html` | Google Search Console ownership proof — uploaded verbatim; never edit or delete it, or the property loses verification |
 | `.github/workflows/validate.yml` | CI check |
 
 Draft pages (`catalogue.html`, `connections.html`, `species-*.html`) are kept for
