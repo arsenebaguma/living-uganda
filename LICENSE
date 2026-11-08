@@ -1,0 +1,48 @@
+# Living Uganda — copyright and reuse
+
+Copyright © 2026 Living Uganda. All rights reserved except as set out below.
+
+Living Uganda is an independent, non-commercial project documenting Uganda's
+living world. The text, the site design, the original data compilations and the
+code in this repository are the work of the project.
+
+## What you may do without asking
+
+- Read, link to and cite the site.
+- Quote short passages with attribution ("Living Uganda, <page>, accessed <date>").
+- Use it in teaching, study and non-commercial research.
+- Print pages for personal or classroom use.
+
+## What needs permission
+
+- Reproducing substantial parts of the site or the catalogue in another
+  publication, dataset or product.
+- Commercial use of any kind.
+- Re-hosting the site or its data under another name.
+
+Please ask first: https://github.com/arsenebaguma0-ux/living-uganda/issues
+
+## Third-party material keeps its own licence
+
+This notice covers only material that Living Uganda itself created.
+
+- **Photographs and illustrations** remain the property of their photographers
+  and are used under the licence named beside each image on
+  `credits.html`, `catalogue-credits.html` and `collection-credits.html`.
+  Those licences (for example CC BY, CC BY-SA, CC0) control reuse of the images,
+  not this notice.
+- **Datasets** come from GBIF publishers under their own licences, listed on
+  `dataset-credits.html`.
+- **Typefaces** are Chakra Petch and IBM Plex Mono, used under the SIL Open Font
+  License; the licence texts are in `assets/fonts/`.
+- **Scientific sources** quoted or summarised on the site remain under the
+  copyright of their authors and publishers.
+
+If you believe something here is credited wrongly or used without permission,
+please open an issue and it will be reviewed promptly.
+
+## No warranty
+
+The catalogue is a preliminary, growing record assembled from published
+datasets. It is provided as-is, without warranty of accuracy or completeness,
+and it is not a substitute for a formal taxonomic or conservation assessment.

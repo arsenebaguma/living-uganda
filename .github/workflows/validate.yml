@@ -1,0 +1,38 @@
+name: Validate site
+
+# Runs on every push to main and on every pull request.
+# The same check runs locally before publishing (see README, "Before you publish"),
+# so this is the backstop that catches an edit made straight on GitHub.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Release check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Metadata, links, data and publishing checks
+        run: python .github/ci/check_release.py --site .
+
+      - name: Files GitHub Pages needs must be present
+        run: |
+          set -e
+          for f in .nojekyll 404.html robots.txt sitemap.xml index.html data/species.json; do
+            test -f "$f" || { echo "missing required file: $f"; exit 1; }
+          done
+          echo "all required publishing files present"
